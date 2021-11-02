@@ -19,7 +19,7 @@ import javax.persistence.Id;
 public class Locality {
 
     @Id
-    private Integer id_locality;
+    private Integer idLocality;
 
     @Column(nullable = false)
     private String name;
