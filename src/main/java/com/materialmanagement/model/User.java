@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    private Integer id;
+    private Integer user_id;
 
     @Column(nullable = false)
     private String name;
