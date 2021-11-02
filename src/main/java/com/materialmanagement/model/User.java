@@ -14,13 +14,13 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    private Integer user_id;
+    private Integer userId;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private String last_name;
+    private String lastName;
 
     @Column(nullable = false)
     private String email;
