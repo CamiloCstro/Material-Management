@@ -21,7 +21,7 @@ public class RecycleObject {
     private Integer idRecycleObject;
 
     @Column(nullable = false)
-    private String name;
+    private String direction;
 
     @Column(nullable = false)
     private Double weight;
