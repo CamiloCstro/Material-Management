@@ -33,5 +33,8 @@ public class Locality {
     @JsonIgnore
     private User user;
 
+    @OneToMany(mappedBy = "locality", cascade = CascadeType.ALL)
+    private Set<RecycleObject> recycleObjects;
+
 
 }
