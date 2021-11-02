@@ -34,4 +34,8 @@ public class RecycleObject {
     @JsonIgnore
     private Locality locality;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="registrationID")
+    private Registration registration;
+
 }
