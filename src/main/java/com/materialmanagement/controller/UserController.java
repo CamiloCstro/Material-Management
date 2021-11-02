@@ -16,7 +16,6 @@ public class UserController {
 
     @GetMapping("/User")
     public List<User> getAllUsers() {
-        // The BookRepository is already injected and you can use it
         return userRepository.findAll();
     }
 
