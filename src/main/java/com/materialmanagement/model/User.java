@@ -31,6 +31,7 @@ public class User {
     @Column(nullable = false)
     private boolean active;
 
+    //rl
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Locality> localities;
 }
