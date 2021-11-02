@@ -6,9 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -19,7 +18,7 @@ import javax.persistence.Id;
 public class Locality {
 
     @Id
-    private Integer idLocality;
+    private Integer localityId;
 
     @Column(nullable = false)
     private String name;
@@ -27,5 +26,7 @@ public class Locality {
     @Column(nullable = false)
     private String neighborhood;
 
+    @OneToMany(mappedBy = "locality", cascade = CascadeType.ALL)
+    private Set <User> users;
 
 }

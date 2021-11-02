@@ -1,10 +1,9 @@
 package com.materialmanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -30,5 +29,10 @@ public class User {
 
     @Column(nullable = false)
     private boolean active;
+
+    @ManyToOne
+    @JoinColumn(name = "LOCALITY_ID")
+    @JsonIgnore
+    private Locality locality;
 
 }
