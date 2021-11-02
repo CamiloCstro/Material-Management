@@ -26,6 +26,7 @@ public class Locality {
     @Column(nullable = false)
     private String neighborhood;
 
+    //rl
     @OneToMany(mappedBy = "locality", cascade = CascadeType.ALL)
     private Set <User> users;
 
