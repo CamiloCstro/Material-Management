@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -30,9 +31,6 @@ public class User {
     @Column(nullable = false)
     private boolean active;
 
-    @ManyToOne
-    @JoinColumn(name = "LOCALITY_ID")
-    @JsonIgnore
-    private Locality locality;
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Locality> localities;
 }

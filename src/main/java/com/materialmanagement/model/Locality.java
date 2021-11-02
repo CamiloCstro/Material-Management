@@ -1,6 +1,7 @@
 package com.materialmanagement.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,11 @@ public class Locality {
     @Column(nullable = false)
     private String neighborhood;
 
-    //rl
-    @OneToMany(mappedBy = "locality", cascade = CascadeType.ALL)
-    private Set <User> users;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    @JsonIgnore
+    private User user;
+
 
 }
