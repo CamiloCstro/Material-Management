@@ -33,17 +33,17 @@ public class UserController {
     @PutMapping("/User/{id}")
     public User updateUser(@PathVariable Integer id, @RequestBody User UserNew) {
 
-        User User = userRepository.findById(id).get();
+        User user = userRepository.findById(id).get();
 
-        User.setName(UserNew.getName());
-        User.setLastName(UserNew.getLastName());
-        User.setEmail(UserNew.getEmail());
-        User.setActive(UserNew.isActive());
-        User.setPassword(UserNew.getPassword());
+        user.setName(UserNew.getName());
+        user.setLastName(UserNew.getLastName());
+        user.setEmail(UserNew.getEmail());
+        user.setActive(UserNew.isActive());
+        user.setPassword(UserNew.getPassword());
 
-        userRepository.save(User);
+        userRepository.save(user);
 
-        return User;
+        return user;
     }
 
     @DeleteMapping("/User/{id}")
