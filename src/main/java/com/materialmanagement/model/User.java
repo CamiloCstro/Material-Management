@@ -1,6 +1,5 @@
 package com.materialmanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,4 +33,8 @@ public class User {
     //rl
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Locality> localities;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Registration> registrations;
+
 }
