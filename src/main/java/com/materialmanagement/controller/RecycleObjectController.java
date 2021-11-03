@@ -18,23 +18,23 @@ public class RecycleObjectController {
     @Autowired
     ILocalityRepository localityRepository;
 
-    @GetMapping("/getRecycle")
+    @GetMapping()
     public List<RecycleObject> getAllRecycleObjects() {
         return recycleObjectRepository.findAll();
     }
 
-    @GetMapping("/Recycle/{idRecycleObject}")
+    @GetMapping("/{idRecycleObject}")
     public RecycleObject getRecycleObjectById(@PathVariable Integer idRecycleObject) {
         RecycleObject recycleObject =  recycleObjectRepository.findById(idRecycleObject).get();
         return recycleObject;
     }
 
-    @PostMapping("/Recycle")
+    @PostMapping()
     public RecycleObject createLocality(@RequestBody RecycleObject recycleObject) {
         return recycleObjectRepository.save(recycleObject);
     }
 
-    @PutMapping("/Recycle/{idRecycleObject}/{localityId}")
+    @PutMapping("/{idRecycleObject}/{localityId}")
     public RecycleObject associate(@PathVariable Integer idRecycleObject, @PathVariable Integer localityId) {
 
 
@@ -51,7 +51,7 @@ public class RecycleObjectController {
 
     }
 
-    @DeleteMapping("/User/{idRecycleObject}")
+    @DeleteMapping("/{idRecycleObject}")
     public RecycleObject deleteLocality(@PathVariable Integer idRecycleObject) {
         RecycleObject recycleObject = recycleObjectRepository.findById(idRecycleObject).get();
         recycleObjectRepository.deleteById(idRecycleObject);

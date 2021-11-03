@@ -18,23 +18,23 @@ public class LocalityController {
     @Autowired
     IUserRepository userRepository;
 
-    @GetMapping("/locality")
+    @GetMapping()
     public List<Locality> getAllLocalities() {
         return localityRepository.findAll();
     }
 
-    @GetMapping("/Locality/{id}")
+    @GetMapping("/{id}")
     public Locality getLocalityById(@PathVariable Integer id) {
         Locality locality =  localityRepository.findById(id).get();
         return locality;
     }
 
-    @PostMapping("/Locality")
+    @PostMapping()
     public Locality createLocality(@RequestBody Locality Locality) {
         return localityRepository.save(Locality);
     }
 
-    @PutMapping("/Locality/{localityId}/{userId}{")
+    @PutMapping("/{localityId}/{userId}{")
     public Locality associate(@PathVariable Integer localityId, @PathVariable Integer userId) {
 
         User user = userRepository.findById(userId).get();
@@ -50,7 +50,7 @@ public class LocalityController {
 
     }
 
-    @PutMapping("/Locality/{localityId}")
+    @PutMapping("/{localityId}")
     public Locality updateLocality(@PathVariable Integer localityId, @RequestBody Locality LocalityNew) {
 
         Locality locality = localityRepository.findById(localityId).get();
@@ -64,7 +64,7 @@ public class LocalityController {
     }
 
 
-    @DeleteMapping("/User/{localityId}")
+    @DeleteMapping("/{localityId}")
     public Locality deleteLocality(@PathVariable Integer localityId) {
         Locality locality = localityRepository.findById(localityId).get();
         userRepository.deleteById(localityId);
