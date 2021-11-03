@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 
 @Entity
@@ -30,5 +27,10 @@ public class Registration {
     @OneToOne(mappedBy = "registration")
     @JsonIgnore
     private RecycleObject recycleObject;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    @JsonIgnore
+    private User user;
 
 }
