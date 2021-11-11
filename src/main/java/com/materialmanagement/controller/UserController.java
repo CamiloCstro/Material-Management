@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/User")
-public class UserController {
+public class UserController  {
 
     @Autowired
     IUserRepository userRepository;
@@ -32,17 +32,13 @@ public class UserController {
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Integer id, @RequestBody User UserNew) {
-
         User user = userRepository.findById(id).get();
-
-        user.setName(UserNew.getName());
+        user.setFirstName(UserNew.getFirstName());
         user.setLastName(UserNew.getLastName());
         user.setEmail(UserNew.getEmail());
         user.setActive(UserNew.isActive());
         user.setPassword(UserNew.getPassword());
-
         userRepository.save(user);
-
         return user;
     }
 
