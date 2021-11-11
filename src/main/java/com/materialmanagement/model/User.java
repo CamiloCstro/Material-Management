@@ -14,33 +14,40 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User implements UserDetails {
+@AllArgsConstructor
+public class User implements UserDetails  {
 
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
     private Integer id;
-
-    @Column(nullable = false)
     private String firstName;
-
-    @Column(nullable = false)
     private String lastName;
-
-    @Column(nullable = false, unique = true)
     private String email;
-
-    @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserRole UserRole;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
-    @Column(nullable = false)
-    private boolean active;
-
-    @Column(nullable = false)
-    private boolean enable;
+    public User(String firstName,
+                   String lastName,
+                   String email,
+                   String password,
+                   UserRole UserRole) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.UserRole = UserRole;
+    }
 
     //rl
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -49,20 +56,16 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Registration> registrations;
 
-    public User(String firstName, String lastName, String email, String password, UserRole userRole, boolean active, boolean enable) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.userRole = userRole;
-        this.active = active;
-        this.enable = enable;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(UserRole.USER.name());
         return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override
@@ -72,12 +75,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return !active;
+        return !locked;
     }
 
     @Override
@@ -87,6 +90,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enable;
+        return true;
     }
 }
